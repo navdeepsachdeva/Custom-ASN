@@ -1,0 +1,40 @@
+- name: Listen for events on a webhook
+  hosts: workstation*
+  sources:
+    - name: Match events posted to port 5000
+      ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+
+  rules:
+    # - name: Print the Complete Event First
+    #   condition: true
+    #   action:
+    #     print_event:
+    #       pretty: true
+      
+    - name: Print the Event Specific NORMAL
+      condition: event.payload.log_status == True  and event.payload.message == "test123"
+      actions:
+        - print_event:
+            pretty: true
+        - run_module:
+            name: ansible.builtin.debug
+            module_args:
+              msg: >
+                Very Good MSG {{ event.payload.message }}
+                ME {{ event.meta.received_at }}
+
+    - name: Print the Event Specific BAD
+      condition: >
+        event.payload.log_status == True and
+        event.payload.message != "test123"
+      actions:
+        - print_event:
+            pretty: true
+        - run_module:
+            name: ansible.builtin.debug
+            module_args:
+              msg: >
+                BAD Good MSG {{ event.payload.message }}
+                YOU {{ event.meta.received_at }}

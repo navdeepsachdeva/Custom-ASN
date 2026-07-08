@@ -1,0 +1,19 @@
+- name: Journald events
+  hosts: workstation*
+  sources:
+    - name: Match all messages
+      ansible.eda.journald:
+        match: "SYSLOG_FACILITY=10"
+        delay: 5
+  rules:
+    - name: Print sudo journald event message
+      condition: event.journald._comm == 'useradd'
+      # condition: true
+      actions:
+        # - print_event:
+        #     pretty: true
+        - run_module:
+            name: ansible.builtin.debug
+            module_args:
+              # msg: "{{ event.journald.message }}"
+              msg: "{{ event.meta.received_at }}  == {{ event.journald.message }}"

@@ -1,0 +1,45 @@
+download_url: https://hub.lab.example.com/api/galaxy/v3/plugin/ansible/content/rh-certified/collections/artifacts/ansible-posix-1.5.4.tar.gz
+format_version: 1.0.0
+name: posix
+namespace: ansible
+server: https://hub.lab.example.com/api/galaxy/content/rh-certified/
+signatures:
+- pubkey_fingerprint: 39B5D759361A97464C564A8FE1A4BD708A828AAD
+  pulp_created: '2024-03-07T14:01:52.590322Z'
+  signature: '-----BEGIN PGP SIGNATURE-----
+
+    Version: GnuPG v1
+
+
+    iQIVAwUAZGJ9ZeGkvXCKgoqtAQhnKA/9GKZ1B+AALHM8hoO9yJgcDP+cIn3cPzhT
+
+    8S9dtNNpbFmz/uydIObCXaPVhgI7fzQGQkg9LAgePIOEqasTlmC91AzLOcL0k0pW
+
+    AKFk6vgONQL7KioGVVC4c3K2tfQeyVpIkfF42bIYZA1NgEYtOZGY6exw+PzCNKIu
+
+    /KqIIQK+8dGMhpJgu9tyl0msEvqeAmpQUzQisf5jFSJ91vWgnR18BITS8nZejNOs
+
+    HpqoqH4KWPGJK56jhsOkhGUjDZhPe1kKyNJ1ulc59ceAAXH+wJMCn2KaL1/Mp1pj
+
+    FrVTKYVPOEgtOa+QjRRLhTdZLg4TSb1f381e5PVv/FO1RVp+Vz+XEi62hfRcc6rp
+
+    DyrFpBocQtNbYL9Vx3V7gr3BWv+Ljn8T7l8wK7QU5eOrMSveNld8matBC+Q5+eOm
+
+    XGoKcc15j4Pq08UT8LKpLCGPf88989+8NTJ6a5oQ42umiJTqsePguvTpWWYEMdr1
+
+    hQzkB6vP6vDHGsS4rHz5UGCNQTBeFcySd63YWR4Irf7tXSh9axyWoXgkkQX/PXAr
+
+    oNmcWwCEzw8JXc3q2oVo6LnJIKdmMDShOoaXB5eO4cElWrMGPtdkJXiznkUWEI10
+
+    wDQRD2ubkg+KWIjsJ153qsAG4KVStXACAwLjGqwVTNwct97zqBrGvzLGBau+QDHD
+
+    uxDvYOhwgcI=
+
+    =ChxS
+
+    -----END PGP SIGNATURE-----
+
+    '
+  signing_service: null
+version: 1.5.4
+version_url: /api/galaxy/content/rh-certified/v3/plugin/ansible/content/rh-certified/collections/index/ansible/posix/versions/1.5.4/
