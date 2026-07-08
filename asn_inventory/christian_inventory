@@ -1,0 +1,24 @@
+## INI Format ##
+
+# servere.lab.example.com
+serverf.lab.example.com location="Matrix"
+
+[den]
+servera.lab.example.com
+serverb.lab.example.com
+
+[den:vars]
+location="Den Bosch City"
+
+
+[amsterdam]
+serverc.lab.example.com
+serverd.lab.example.com
+
+[amsterdam:vars]
+location="Amsterdam"
+
+
+
+[all:vars]
+location="AnyWhere"

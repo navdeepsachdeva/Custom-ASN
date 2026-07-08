@@ -1,0 +1,31 @@
+- name: Use and Store Facts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Use Existing Facts from Storage
+      ansible.builtin.copy:
+        dest: /tmp/info.txt
+        content: |
+          somevar         = {{ NOT_THERE }}
+          Arch            = {{ ansible_facts['architecture'] }}
+          Date            = {{ ansible_facts['date_time']['date'] }}
+          Time            = {{ ansible_facts['date_time']['time'] }}
+          IP Address      = {{ ansible_default_ipv4.address }}
+          OS              = {{ ansible_distribution }}
+          Version         = {{ ansible_distribution_version }}
+          Kernel          = {{ ansible_facts['kernel'] }}
+          FQDN            = {{ ansible_facts['fqdn'] }}
+          HostName        = {{ ansible_facts['hostname'] }}
+          Total Memory    = {{ ansible_facts['memory_mb']['real']['total'] }}
+          Free Memory     = {{ ansible_facts['memory_mb']['real']['free'] }}
+          Python Version  = {{ ansible_facts['python_version'] }}
+      register: out
+      ignore_errors: true
+
+    - name: Print the Status
+      ansible.builtin.debug:
+        msg: "{{ out }}"
+
+    - name: Set the Failed Fact
+      ansible.builtin.set_fact:
+        overall: out.failed

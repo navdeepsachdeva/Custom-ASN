@@ -1,0 +1,3 @@
+- name: Collect and Store Facts
+  hosts: all
+  gather_facts: true

@@ -1,0 +1,11 @@
+- name: Always Template
+  hosts: servera*
+  gather_facts: false
+  tasks:
+    - name: Always Task
+      ansible.builtin.debug:
+        msg: "Always Task Executed"
+
+    - name: ANother Task
+      ansible.builtin.debug:
+        msg: "HELLO AGAIN"

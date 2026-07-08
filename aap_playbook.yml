@@ -1,0 +1,54 @@
+- name: AAP Playbook
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars/users.yml
+
+  tasks:
+    # - name: Create a User
+    #   ansible.platform.user:
+    #     first_name: Frank
+    #     last_name: NA
+    #     password: pass@123
+    #     state: present
+    #     username: frank
+    #     is_superuser: true
+    #     is_platform_auditor: 
+    #     organizations: 
+    #     aap_hostname: https://aap.lab.example.com
+    #     aap_username: admin
+    #     aap_password: redhat
+    #     aap_validate_certs: false
+
+    - name: Create Organization
+      ansible.platform.organization:
+        name: IBM
+        description: IBM Inc.
+        aap_hostname: https://aap.lab.example.com
+        aap_username: admin
+        aap_password: redhat
+        aap_validate_certs: false
+        # controller_config_file: "./controller_cli.cfg"
+    - name: Create a User
+      ansible.platform.user:
+        first_name: "{{ item.first_name }}"
+        last_name: "{{ item.last_name }}"
+        password: "{{ item.password }}"
+        state: present
+        username: "{{ item.username }}"
+        is_superuser: "{{ item.is_superuser }}"
+        is_platform_auditor: "{{ item.is_platform_auditor }}"
+        organizations: "{{ item.organizations }}"
+        aap_hostname: https://aap.lab.example.com
+        aap_username: admin
+        aap_password: redhat
+        aap_validate_certs: false
+      loop: "{{ users }}"
+
+    - name: Create Inventory
+      ansible.controller.inventory:
+        name: ASN Inventory
+        organization: IBM
+        state: present
+        controller_config_file: "./controller_cli.cfg"
+

@@ -1,0 +1,7 @@
+- name: CHeck Inventory Variables
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Print Values
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }} -- {{ somevar }} - {{ ansible_connection }}"

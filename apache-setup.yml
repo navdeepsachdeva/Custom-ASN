@@ -1,0 +1,53 @@
+---
+- name: Install the web server and start it
+  hosts: all
+  become: true
+  vars:
+    httpd_packages:
+      - httpd
+      - python3-mod_wsgi
+    apache_test_message: This is a test message
+    apache_max_keep_alive_requests: 115
+  tasks:
+    - name: Install the apache web server
+      ansible.builtin.dnf:
+        name: "{{ httpd_packages }}"
+        state: present
+      notify: Restart apache
+
+    - name: Start the apache web server
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Generate configuration file
+      ansible.builtin.template:
+        src: templates/httpd.conf.j2
+        dest: /etc/httpd/conf/httpd.conf
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Restart apache
+
+    - name: Generate a basic webpage
+      ansible.builtin.template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0644"
+        force: true
+
+    - name: Open firewall access
+      ansible.posix.firewalld:
+        service: http
+        immediate: true
+        permanent: true
+        state: enabled
+
+  handlers:
+    - name: Restart apache
+      ansible.builtin.service:
+        name: httpd
+        state: restarted

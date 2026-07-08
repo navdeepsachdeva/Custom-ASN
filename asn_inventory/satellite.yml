@@ -1,0 +1,7 @@
+plugin: redhat.satellite.foreman
+url: https://satellite.example.com
+user: leo
+password: changeme
+host_filters: 'organization="Web Engineering"'
+hostnames:
+  - name.split('.')[0]

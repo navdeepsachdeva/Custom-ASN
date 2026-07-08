@@ -1,0 +1,6 @@
+---
+- name: FTP client installed
+  ansible.builtin.import_playbook: ftpclient.yml
+
+- name: FTP server is installed
+  ansible.builtin.import_playbook: ansible-vsftpd.yml

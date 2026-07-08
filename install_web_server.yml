@@ -1,0 +1,29 @@
+---
+- name: Install the web server and start it
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Open firewall access
+      ansible.posix.firewalld:
+        service: http
+        immediate: true
+        permanent: true
+        state: enabled
+
+    - name: Install the apache web server
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Deploy Simple Page
+      ansible.builtin.copy:
+        content: "Hello ASN Bank {{ ansible_distribution_version }}"
+        dest: /var/www/html/index.html
+        mode: "0644"
+
+    - name: Start the apache web server
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true

@@ -1,0 +1,22 @@
+- name: Variables Survey vs vars_demo
+  hosts: servera*
+  gather_facts: false
+  # vars_prompt:
+  #   - name: emp_name
+  #     prompt: "Enter Employee Name"
+  #     private: false
+
+  #   - name: emp_password
+  #     prompt: "Enter Employee Password"
+  #     private: true
+
+  tasks:
+    - name: Print the Username / Password
+      ansible.builtin.debug:
+        msg: "Emp Name = {{ emp_name }} and Emp Pasword {{ emp_password }}"
+
+    - name: Create User
+      ansible.builtin.user:
+        name: "{{ emp_name }}"
+        comment: "{{ emp_name }} working in ASN Bank fav color {{ fav_color }}"
+        password: "{{ emp_password | password_hash('sha512') }}"

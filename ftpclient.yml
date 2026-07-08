@@ -1,0 +1,9 @@
+---
+- name: FTP client installed
+  hosts: all
+  become: true
+  tasks:
+    - name: Install software
+      ansible.builtin.dnf:
+        name: lftp
+        state: present

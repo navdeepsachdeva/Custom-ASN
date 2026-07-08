@@ -1,0 +1,16 @@
+users:
+  - first_name: Albert
+    last_name: NA
+    password: pass@123
+    username: albert
+    is_superuser: true
+    is_platform_auditor: false
+    organizations: Default
+
+  - first_name: Edwin
+    last_name: NA
+    password: pass@123
+    username: edwin
+    is_superuser: false
+    is_platform_auditor: true
+    organizations: IBM
